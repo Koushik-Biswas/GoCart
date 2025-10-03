@@ -13,28 +13,28 @@ import { fetchUserRatings } from "@/lib/features/rating/ratingSlice";
 export default function PublicLayout({ children }) {
 
     const dispatch = useDispatch()
-    const {user} = useUser()
-    const {getToken} = useAuth()
+    const { user } = useUser()
+    const { getToken } = useAuth()
 
-    const {cartItems} = useSelector((state)=>state.cart)
+    const { cartItems } = useSelector((state) => state.cart)
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(fetchProducts({}))
-    },[])
+    }, [])
 
-    useEffect(()=>{
-        if(user){
-            dispatch(fetchCart({getToken}))
-            dispatch(fetchAddress({getToken}))
-            dispatch(fetchUserRatings({getToken}))
+    useEffect(() => {
+        if (user) {
+            dispatch(fetchCart({ getToken }))
+            dispatch(fetchAddress({ getToken }))
+            dispatch(fetchUserRatings({ getToken }))
         }
-    },[user])
+    }, [user])
 
-    useEffect(()=>{
-        if(user){
-            dispatch(uploadCart({getToken}))
+    useEffect(() => {
+        if (user) {
+            dispatch(uploadCart({ getToken }))
         }
-    },[cartItems])
+    }, [cartItems])
 
 
 
