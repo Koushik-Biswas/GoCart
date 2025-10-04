@@ -90,7 +90,8 @@ GoCart is a production-grade, multi-role e-commerce platform powered by the PERN
 
 ## Architecture
 
-https://raw.githubusercontent.com/Koushik-Biswas/GoCart/3d4a0162c3dba97d4c6209b6e0c207b39b791014/Screenshot%202025-10-04%20083018.png?token=BGUHEPS6N5EDGKZINNU7GATI4FNJK
+![photo_2025-10-04_23-08-09](https://github.com/user-attachments/assets/0e89789f-66d2-4724-807b-1fc70212ef36)
+
 
 ## Project Structure
 
