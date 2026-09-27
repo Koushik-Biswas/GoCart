@@ -90,8 +90,71 @@ GoCart is a production-grade, multi-role e-commerce platform powered by the PERN
 
 ## Architecture
 
-![photo_2025-10-04_23-08-09](https://github.com/user-attachments/assets/0e89789f-66d2-4724-807b-1fc70212ef36)
+```mermaid
+flowchart TB
+		subgraph Users
+				A[Admin]
+				B[Seller]
+				C[Customer]
+		end
 
+		subgraph Frontend["Next.js Frontend (SSR focus)"]
+				FE[App Router Pages & Components]
+				RT[Redux Toolkit Slices]
+				CK[Clerk Hooks]
+				ST[Stripe Elements]
+				IK[ImageKit Client]
+				AI[OpenAI Client]
+		end
+
+		subgraph Backend["Next.js API Routes (Express-style)"]
+				API_PRODUCTS[/products/]
+				API_ORDERS[/orders/]
+				API_COUPONS[/admin/coupon/]
+				API_STORE[/store/**/]
+				API_AUTH[/admin/is-admin/]
+				API_AI[/store/ai/]
+				PRISMA[(Prisma Client)]
+				INNGEST[Inngest Functions]
+		end
+
+		subgraph Data["Neon PostgreSQL"]
+				DB_USER[(User)]
+				DB_STORE[(Store)]
+				DB_PRODUCT[(Product)]
+				DB_ORDER[(Order & OrderItem)]
+				DB_COUPON[(Coupon)]
+				DB_RATING[(Rating)]
+				DB_ADDRESS[(Address)]
+		end
+
+		subgraph External
+				Clerk
+				Stripe
+				ImageKit
+				OpenAI
+				InngestSvc[Inngest Runtime]
+		end
+
+		A & B & C --> FE
+		FE -->|SSR/CSR Requests| Backend
+		FE -->|Auth, Tokens| Clerk
+		FE -->|Payment Intent| Stripe
+		FE -->|Media Upload| ImageKit
+		FE -->|AI Queries| OpenAI
+
+		Backend --> PRISMA --> Data
+		Backend -->|Webhook/Event| Stripe
+		Backend -->|Triggers| InngestSvc
+		INNGEST --> Backend
+		PRISMA -->|RBAC Enforcement| Backend
+
+		Backend --> Clerk
+		Backend --> ImageKit
+		Backend --> OpenAI
+```
+
+---
 
 ## Project Structure
 
