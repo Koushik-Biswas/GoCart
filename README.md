@@ -422,9 +422,9 @@ git push origin feature/amazing-update
 
 ## License
 
-Distributed under the MIT License.
+Distributed under the [MIT License](LICENSE).
 
-All rights reserved by **Koushik Biswas © 2025**.
+Copyright (c) 2025-2026 Koushik Biswas.
 
 ---
 
